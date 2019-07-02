@@ -1,5 +1,7 @@
 package com.kidshelloworld.myagent;
 
+import java.io.File;
+
 /**
  * @author huangtiande@rfchina.com
  * create_date: 2019-7-2
@@ -10,5 +12,6 @@ public class AgentTest {
 		Person person = new Person();
 		System.out.print("invoke hello: ");
 		Person.class.getMethod("hello", String.class).invoke(person, name);
+		System.out.println(new File("e:\\"));
 	}
 }
