@@ -33,7 +33,7 @@ public class Myagent {
 				while (it.hasNext()) {
 					Class c = (Class) it.next();
 					if (!c.getName().startsWith("javassist")) {
-						System.out.println(" ========================> In Progress:" + c.getName());
+						//System.out.println(" ========================> In Progress:" + c.getName());
 						inst.retransformClasses(c);
 					}
 				}
@@ -51,11 +51,11 @@ public class Myagent {
 		System.out.println("=========premain execute2 end========");
 	}
 
-	public static void agentmain(String agentmain, Instrumentation inst) {
-		System.out.println("=========premain execute========");
-		System.out.println("agentArgs: " + agentmain);
+	public static void agentmain(String agentArgs, Instrumentation inst) {
+		System.out.println("=========agentmain execute========");
+		System.out.println("agentArgs: " + agentArgs);
 		inst.addTransformer(new MyTransformer(), true);
-		System.out.println("=========premain execute end========");
+		System.out.println("=========agentmain execute end========");
 	}
 
 	public static void agentmain(String agentArgs) {
