@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Premain-Class: com.kidshelloworld.myagent.Myagent
+Can-Redefine-Classes: true
+Boot-Class-Path: javassist-3.25.0-GA.jar
