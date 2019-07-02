@@ -1,5 +1,4 @@
-# javaagent
-java agent example
+# javaagent example
 
 ```shell
 gradle distZip
