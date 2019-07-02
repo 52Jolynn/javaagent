@@ -31,6 +31,6 @@ public class MyTransformer implements ClassFileTransformer {
 				e.printStackTrace();
 			}
 		}
-		return classfileBuffer;
+		return null;
 	}
 }

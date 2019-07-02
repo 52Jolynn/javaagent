@@ -1,6 +1,7 @@
 package com.kidshelloworld.myagent;
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author huangtiande@rfchina.com
@@ -13,5 +14,8 @@ public class AgentTest {
 		System.out.print("invoke hello: ");
 		Person.class.getMethod("hello", String.class).invoke(person, name);
 		System.out.println(new File("e:\\"));
+		while(true) {
+			TimeUnit.SECONDS.sleep(1);
+		}
 	}
 }
