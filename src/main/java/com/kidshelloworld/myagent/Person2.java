@@ -11,4 +11,8 @@ public class Person2 {
 	public String toString() {
 		return "name: " + name;
 	}
+
+	public void hello2(String name) {
+		System.out.println(name);
+	}
 }

@@ -26,11 +26,13 @@ public class MyTransformer implements ClassFileTransformer {
 						"public void hello(String name){ System.out.println(\"hello \"+name);}", ctclass);
 				ctclass.addMethod(helloM);
 				System.out.println("add method hello to class: " + className);
-				return ctclass.toBytecode();
+				byte[] data = ctclass.toBytecode();
+				ctclass.defrost();
+				return data;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return null;
+		return classfileBuffer;
 	}
 }

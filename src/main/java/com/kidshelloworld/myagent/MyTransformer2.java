@@ -1,5 +1,10 @@
 package com.kidshelloworld.myagent;
 
+import javassist.ClassClassPath;
+import javassist.ClassPool;
+import javassist.CtClass;
+import javassist.CtMethod;
+
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -13,19 +18,22 @@ public class MyTransformer2 implements ClassFileTransformer {
 	public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
 			ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
 		System.out.println("transform class name: " + className + ", classloader: " + loader.toString());
-//		className = className.replace("/", ".");
-//		if (className.equals("com.kidshelloworld.myagent.Person2")) {
-//			try {
-//				CtClass ctclass = ClassPool.getDefault().get(className);
-//				CtMethod helloM = CtNewMethod.make(
-//						"public void hello2(String name){ System.out.println(\"hello \"+name);}", ctclass);
-//				ctclass.addMethod(helloM);
-//				System.out.println("add method hello to class: " + className);
-//				return ctclass.toBytecode();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-		return null;
+		className = className.replace("/", ".");
+		if (className.equals("com.kidshelloworld.myagent.Person2")) {
+			try {
+				ClassPool pool = ClassPool.getDefault();
+				pool.insertClassPath(new ClassClassPath(Person2.class));
+				CtClass ctclass = pool.get(className);
+				CtMethod ctMethod = ctclass.getDeclaredMethod("hello2");
+				ctMethod.setBody("System.out.println(\"hello person2\");");
+				System.out.println("add method hello to class: " + className);
+				byte[] data = ctclass.toBytecode();
+				ctclass.defrost();
+				return data;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return classfileBuffer;
 	}
 }

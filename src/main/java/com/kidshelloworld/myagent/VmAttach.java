@@ -20,7 +20,7 @@ public class VmAttach extends Thread {
 
 	public void run() {
 		VirtualMachine vm = null;
-		List<VirtualMachineDescriptor> listAfter = null;
+		List<VirtualMachineDescriptor> listAfter;
 		try {
 			int count = 0;
 			while (true) {
@@ -37,16 +37,17 @@ public class VmAttach extends Thread {
 					break;
 				}
 			}
-			vm.loadAgent(jar);
-			vm.detach();
+			if (vm != null) {
+				vm.loadAgent(jar);
+				vm.detach();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		new VmAttach("E:\\work\\rfchina\\code\\platform\\myagent\\build\\distributions\\myagent-1.0"
-				+ ".0-SNAPSHOT\\lib\\myagent-1.0.0-SNAPSHOT.jar", VirtualMachine.list()).start();
+		new VmAttach("myagent-1.0.0-SNAPSHOT.jar", VirtualMachine.list()).start();
 	}
 }
 

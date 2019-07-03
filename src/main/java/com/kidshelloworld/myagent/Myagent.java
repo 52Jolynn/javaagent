@@ -1,7 +1,6 @@
 package com.kidshelloworld.myagent;
 
 import java.lang.instrument.Instrumentation;
-import java.lang.instrument.UnmodifiableClassException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -58,7 +57,7 @@ public class Myagent {
 		inst.addTransformer(new MyTransformer2(), true);
 		try {
 			inst.retransformClasses(Person2.class, String.class);
-		} catch (UnmodifiableClassException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		System.out.println("=========agentmain execute end========");
