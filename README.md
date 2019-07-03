@@ -4,8 +4,7 @@
 gradle distZip
 unzip myagent-1.0.0-SNAPSHOT.zip
 cd myagent-1.0.0-SNAPSHOT/lib
-java -javaagent:myagent-1.0.0-SNAPSHOT.jar -cp . -jar myagent-1.0.0-SNAPSHO
-T.jar
+java -javaagent:myagent-1.0.0-SNAPSHOT.jar -cp . -jar myagent-1.0.0-SNAPSHOT.jar
 ```
 
 [Instrumentation 新功能](https://www.ibm.com/developerworks/cn/java/j-lo-jse61/index.html)
