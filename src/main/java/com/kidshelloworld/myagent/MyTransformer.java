@@ -26,9 +26,7 @@ public class MyTransformer implements ClassFileTransformer {
 						"public void hello(String name){ System.out.println(\"hello \"+name);}", ctclass);
 				ctclass.addMethod(helloM);
 				System.out.println("add method hello to class: " + className);
-				byte[] data = ctclass.toBytecode();
-				ctclass.defrost();
-				return data;
+				return ctclass.toBytecode();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

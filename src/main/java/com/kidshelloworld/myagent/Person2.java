@@ -12,7 +12,7 @@ public class Person2 {
 		return "name: " + name;
 	}
 
-	public void hello2(String name) {
+	protected void hello2(String name) {
 		System.out.println(name);
 	}
 }
